@@ -1,10 +1,11 @@
 {
   "name": "url-shortener",
   "version": "1.0.0",
-  "description": "",
+  "description": "url shortener api",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/FadlullahLanre/Url-Shortener#readme",
   "dependencies": {
+    "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "mongoose": "^6.6.1",
     "shortid": "^2.2.16",

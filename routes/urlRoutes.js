@@ -8,3 +8,5 @@ const {
 
 router.route('/shorten').post(shortenUrl);
 router.route('/:code').get(redirectUrl);
+
+module.exports = router
