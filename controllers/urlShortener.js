@@ -34,7 +34,8 @@ const shortenUrl = catchAsync(async (req, res, next) => {
                     longUrl,
                     shortUrl,
                     urlCode,
-                    date: new Date()
+                    date: new Date(),
+                    visitors : 0
                 })
                 await url.save();
                 res.json(url);
@@ -78,6 +79,7 @@ const redirectUrl = catchAsync(async (req, res, next) => {
 module.exports = {
     shortenUrl,
     redirectUrl
+    
 }
 
 
