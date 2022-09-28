@@ -8,6 +8,11 @@ const URLSchema = new mongoose.Schema({
     date: {
         type: String,
         default: Date.now
+    },
+    createdBy:{
+        type: mongoose.Schema.ObjectId,
+        ref: 'UserTable',
+        select: false
     }
 })
 

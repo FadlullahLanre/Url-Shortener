@@ -2,10 +2,11 @@ const express = require('express');
 const validUrl = require('valid-url');
 const shortid = require('shortid');
 const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/appError');
 
 const Url = require('../models/urlModel');
 
-const baseUrl = 'http:localhost:4000';
+const baseUrl = 'https://url-shortener-bc.herokuapp.com';
 
 const shortenUrl = catchAsync(async (req, res, next) => {
     const { longUrl } = req.body
@@ -34,8 +35,8 @@ const shortenUrl = catchAsync(async (req, res, next) => {
                     longUrl,
                     shortUrl,
                     urlCode,
-                    date: new Date(),
-                    visitors : 0
+                    createdBy : req.user.id,
+                    date: new Date()
                 })
                 await url.save();
                 res.json(url);
@@ -76,9 +77,18 @@ const redirectUrl = catchAsync(async (req, res, next) => {
 
 });
 
+const getAllUrls =  catchAsync ( async (req, res, next) => {
+    const url = await Url.find({createdBy:req.user.id})
+    if(!url){
+        return next(new AppError("You have no shortened urls", 404))
+    }
+    res.status(200).json(url)
+})
+
 module.exports = {
     shortenUrl,
-    redirectUrl
+    redirectUrl,
+    getAllUrls
     
 }
 

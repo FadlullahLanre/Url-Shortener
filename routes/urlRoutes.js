@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const {
     shortenUrl,
-    redirectUrl
+    getAllUrls
+
 } = require('../controllers/urlShortener');
 
-
-router.route('/shorten').post(shortenUrl);
-router.route('/:code').get(redirectUrl);
+const { protect } = require("../controllers/users")
+router.route('/shorten').post(protect, shortenUrl)
+router.route('/').get(protect, getAllUrls)
 
 module.exports = router

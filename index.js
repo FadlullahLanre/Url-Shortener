@@ -7,6 +7,7 @@ const cors = require('cors');
 const globalErrorHandler = require('./utils/globalErrors');
 const catchAsync = require('./utils/catchAsync');
 const urlRoutes = require('./routes/urlRoutes');
+const userRoutes = require('./routes/users');
 const redirectRoutes = require('./routes/redirectRoutes');
 
 const app = express();
@@ -20,10 +21,11 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/api/v1/url/', urlRoutes);
+app.use('/api/v1/users', userRoutes);
 app.use('/', redirectRoutes);
-app.use('/home', function(req, res) {
+app.get('/', function(req, res) {
     res.send({ message : 'Welcome to the Url shortener Api!'});
-})
+});
 
 app.all('*', (req, res, next) => {
 	//   const err = new Error(`Can't find ${req.originalUrl} on this server`)
