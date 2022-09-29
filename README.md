@@ -1,6 +1,6 @@
 # Url-Shortener
 
- A CRUD Task manager app api with authorization, authentication and validation, and also sends email to users after creating an account.
+ A functional Url shortener, that allows a user to create an account,to be able to use the Url shortener feature, and also to get a history of shortened Url by the user.
  
 #Link to postman documentation: 
 https://documenter.getpostman.com/view/16044663/2s83mdKPxN
